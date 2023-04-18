@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class PostDetailTitle extends StatelessWidget {
-  const PostDetailTitle({Key? key}) : super(key: key);
+  final String title;
+  const PostDetailTitle(this.title, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

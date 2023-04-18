@@ -7,6 +7,8 @@ import 'package:flutter_riverpod_blog_start/model/user/user_repository.dart';
 import 'package:flutter_riverpod_blog_start/view/components/custom_elevated_button.dart';
 import 'package:flutter_riverpod_blog_start/view/components/custom_text_form_field.dart';
 
+import '../../../../../core/constants/move.dart';
+
 class LoginForm extends ConsumerWidget {
   final _formKey = GlobalKey<FormState>();
   final _username = TextEditingController();
@@ -42,13 +44,13 @@ class LoginForm extends ConsumerWidget {
           ),
           TextButton(
             onPressed: () {
-
+                Navigator.popAndPushNamed(context, Move.joinPage);
             },
             child: const Text("아직 회원가입이 안되어 있나요?"),
           ),
           TextButton(
             onPressed: () {
-
+              Navigator.popAndPushNamed(context, Move.postHomePage);
             },
             child: const Text("홈페이지 로그인 없이 가보는 테스트"),
           ),
