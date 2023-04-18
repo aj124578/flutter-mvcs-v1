@@ -18,6 +18,15 @@ class UserController {
   final Ref ref;
   UserController(this.ref);
 
+  Future<void> logout() async{
+    try {
+      await ref.read(sessionProvider).logoutSuccess();
+      Navigator.pushNamedAndRemoveUntil(mContext!, Move.loginPage, (route) => false); // 이때까지 열었던 stack 다날리고 화면 이동
+    }catch(e){
+      ScaffoldMessenger.of(mContext!).showSnackBar(SnackBar(content: Text("로그아웃 실패")));
+    }
+  }
+
   Future<void> join(String username, String password, String email) async{
     JoinReqDTO joinReqDTO = JoinReqDTO(username: username, password: password, email: email);
     ResponseDTO responseDTO = await UserRepository().fetchJoin(joinReqDTO);
@@ -25,6 +34,7 @@ class UserController {
       Navigator.pushNamed(mContext!, Move.loginPage);
     }else{
       ScaffoldMessenger.of(mContext!).showSnackBar(SnackBar(content: Text("회원가입 실패")));
+
     }
   }
 
@@ -41,7 +51,9 @@ class UserController {
       // 3. 화면 이동
       Navigator.popAndPushNamed(mContext!, Move.postHomePage);
     }else{
-      ScaffoldMessenger.of(mContext!).showSnackBar(SnackBar(content: Text("회원가입 실패")));
+      ScaffoldMessenger.of(mContext!).showSnackBar(SnackBar(content: Text("로그인 실패 : ${responseDTO.msg}")));
     }
   }
+
+
 }
