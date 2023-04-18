@@ -51,7 +51,7 @@ class UserController {
       // 3. 화면 이동
       Navigator.popAndPushNamed(mContext!, Move.postHomePage);
     }else{
-      ScaffoldMessenger.of(mContext!).showSnackBar(SnackBar(content: Text("로그인 실패 : ${responseDTO}")));
+      ScaffoldMessenger.of(mContext!).showSnackBar(SnackBar(content: Text("로그인 실패 : ${responseDTO.msg}")));
     }
   }
 
